@@ -1,0 +1,161 @@
+/* cart.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#cart-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td {
+    vertical-align: middle;
+}
+
+input[type="number"] {
+    width: 50px;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#logout-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+#logout-container a{
+    text-decoration: none;
+    background-color: blue;
+    color:white;
+    border-radius: 4px;
+    padding:10px;  
+}
+
+.checkout-button {
+    padding: 8px 16px;
+    background-color: #008CBA;
+    color: #fff;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.checkout-button:hover {
+    background-color: #007BAA;
+}
+.cov{
+    height: 5rem;
+    width: 50rem;
+  }
+  form {
+    margin-top: 10px;
+    align-items: center;
+  }
+  
+  form button{
+    cursor: pointer;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-left: 5px;
+    justify-content: left ;
+  }
+  .logout-container a{
+    text-decoration: none;
+    background-color: blue;
+   color:white;
+   border-radius: 4px;
+   padding:10px;
+
+}
+.logout-container a:hover{
+    background-color: red;
+}
+  
+  #cartButton{
+    margin-left: 570px;
+  }
+  form button:hover {
+    background-color:  #ff3c00;
+  }
+
+.bbs
+{
+    text-decoration: none;
+    background-color: blue;
+   color:white;
+   border-radius: 4px;
+   padding:10px;
+}
+.bbs:hover{
+    background-color: #007BAA;
+}
+
+#logout-container a{
+    text-decoration: none;
+    background-color: blue;
+   color:white;
+   border-radius: 4px;
+   padding:10px;
+
+}
+
+#logout-container a:hover{
+    background-color: rgb(70, 124, 175);
+    color: rgb(255, 255, 255);
+
+}
+.center-button {
+    display: flex;
+    justify-content: center;
+}

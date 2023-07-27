@@ -1,0 +1,120 @@
+/* Basic styling for the product details container */
+.product-details {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.product-details h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.product-details img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.product-details p {
+    margin-bottom: 15px;
+}
+
+.product-details p.price {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.product-details form {
+    margin-top: 10px;
+}
+
+.product-details form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.product-details form button:hover {
+    background-color: #0056b3;
+}
+
+.product-details>a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    background-color: #0056b3;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.product-details a:hover {
+    background-color: #007bff;
+}
+
+/* Styling for the mini cart section */
+#mini-cart {
+    margin-top: 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+#mini-cart h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#mini-cart table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#mini-cart table th,
+#mini-cart table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#mini-cart table th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+#mini-cart table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#mini-cart p {
+    margin-top: 10px;
+    text-align: left;
+}
+
+#mini-cart a {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+}
+
+
+#anchor>a{
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #0056b3;
+    padding: 5px;
+    border-radius: 4px;
+
+}
+

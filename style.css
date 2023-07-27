@@ -1,0 +1,260 @@
+/* style.css */
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Header styles */
+h1 {
+  margin: 0;
+  padding: 10px 0;
+}
+
+/* Navigation styles */
+/* div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+} */
+
+a {
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
+}
+
+/* Product styles */
+/* div > div {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  max-width: 300px;
+} */
+/* 
+div > div img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+} */
+
+/* div > div h2 {
+  margin-top: 10px;
+}
+
+div > div p {
+  margin-top: 5px;
+} */
+
+.cov{
+  height: 25rem;
+  width: 50rem;
+}
+form {
+  margin-top: 10px;
+  align-items: center;
+}
+
+form button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+form button:hover {
+  background-color: #2d81db;
+}
+
+/* Pagination styles */
+/* div > div:last-child {
+  text-align: center;
+}
+
+div > div:last-child a {
+  margin: 0 5px;
+} */
+
+/* Cart styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f2f2f2;
+}
+
+form input[type="number"] {
+  width: 50px;
+  text-align: center;
+}
+
+/* Login and Sign Up styles */
+form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input{
+  margin: 5px;
+}
+input[type="submit"] {
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin-left: 5px ;
+}
+
+input[type="submit"]:hover {
+  background-color: #007bff;
+}
+
+p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+/* Admin Panel styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* General styles */
+p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+#disply{
+  height: fit-content;
+  width: fit-content;
+  text-align: center;
+  align-items: center;
+  box-sizing: content-box;
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+  text-decoration: none;
+  color: #333;
+}
+
+.pagination .current-page {
+  background-color: #007bff;
+  color: #fff;
+  pointer-events: none;
+  cursor: default;
+}
+
+.pagination a:hover {
+  background-color: #f1f1f1;
+}
+
+.pagination .disabled-link {
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* Logout styles */
+#logout-container {
+  margin-top: 20px;
+  align-items: center;
+
+}
+
+#logout-container a {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #f8f8f8;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-left: 10rem;
+  align-items: center;
+}
+
+#logout-container a:hover {
+  background-color: #0056b3;
+}
+
+  /* Logout styles */
+  .logout-container {
+    margin-top: 20px;
+    margin-left: 3rem;
+  }
+  
+  .logout-container a {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 3rem;
+  }
+  
+  .logout-container a:hover {
+    background-color: #0056b3;
+  }

@@ -1,0 +1,96 @@
+/* admin.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    font-weight: bold;
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a,
+.pagination .current-page {
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #007bff;
+    margin: 0 5px;
+    border-radius: 3px;
+}
+
+.pagination .disabled-link {
+    color: #b65454;
+    border-color: #cc5151;
+}
+
+/* .pagination>.current-page :active{
+    display: inline-block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #832727;
+    border: 1px solid #007bff;
+    background-color: #0056b3;
+    margin: 0 5px;
+    border-radius: 3px;
+} */
+
+.pagination>.current-page
+{
+    background-color: #0056b3;
+    color: white;
+}
+
+#logout-container{
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#logout-container a{
+    background-color: #0056b3;
+    color: #fff;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+
+}
