@@ -9,28 +9,24 @@ if (!isset($_SESSION['user_id'])) {
 
 $shop = new Shop();
 
-// Logout
+
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: login.php");
     exit();
 }
 
-// Pagination
+
 $items_per_page = 4;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-
-// Handle product category filter
 $category_filter = isset($_GET['category']) ? $_GET['category'] : '';
-
-// Handle search query
 $search_query = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Handle price filter
+
 $min_price = isset($_GET['min_price']) ? $_GET['min_price'] : '';
 $max_price = isset($_GET['max_price']) ? $_GET['max_price'] : '';
 
-// Apply filters and fetch data
+
 $filterData = $shop->applyFilters($page, $category_filter, $search_query, $min_price, $max_price);
 
 $total_pages = $filterData['total_pages'];
@@ -38,7 +34,7 @@ $total_products = $filterData['total_products'];
 $result = $filterData['result'];
 $categories = $filterData['categories'];
 
-// Add product to cart
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['product_id'])) {
     $shop->addToCart($_POST['product_id']);
     $redirectUrl = "shop.php?page=" . urlencode($page) . "&search=" . urlencode($search_query) . "&apply_filter=1";
@@ -62,17 +58,16 @@ if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
     $back_to_shop = isset($_GET['back_to_shop']) ? $_GET['back_to_shop'] : 'shop.php';
 
-    // Store the URL of the previous page in the session
     $_SESSION['previous_page'] = $back_to_shop;
 
-    // Fetch the product details based on the product ID
+
     $sql = "SELECT * FROM products WHERE id = $product_id";
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
         $product = $result->fetch_assoc();
     } else {
-        // If the product is not found, redirect to the shop page
+
         header("Location: shop.php");
         exit();
     }
@@ -83,7 +78,7 @@ if (isset($_GET['product_id'])) {
 <html>
 <head>
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="shop1.css"> 
+    <link rel="stylesheet" href="css/shop1.css"> 
 </head>
 <body>
 <h1>Products</h1>
@@ -136,7 +131,6 @@ if (isset($_GET['product_id'])) {
     ?>
 </div>
 
-<!-- Pagination Links -->
 <div class="pagination">
     <?php if ($total_pages > 1): ?>
         <?php if ($page === 1): ?>

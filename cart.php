@@ -3,7 +3,6 @@ session_start();
 
 include 'connect.php';
 
-// this thing is for Logout params
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: login.php");
@@ -12,9 +11,7 @@ if (isset($_GET['logout'])) {
 if (isset($_SERVER['HTTP_REFERER'])) {
     $_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
 }
-// 
 
-// Update cart quantity or remove product
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['update_cart'])) {
         $cart = $_SESSION['cart'];
@@ -41,19 +38,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $conn->query($sql);
         }
 
-        // This is to Clear the cart after placing the order
+ 
         $_SESSION['cart'] = array();
     }
 }
 
-// 
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="cart3.css"> 
+    <link rel="stylesheet" href="css/cart3.css"> 
 </head>
 <body>
     <h1>Cart</h1>
@@ -105,7 +102,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo '<tr><td colspan="5">Your cart is empty</td></tr>';
         }
 
-        // this code is to remove product from cart
         if (isset($_GET['remove']) && isset($_SESSION['cart'][$_GET['remove']])) {
             unset($_SESSION['cart'][$_GET['remove']]);
             header("Location: cart.php");

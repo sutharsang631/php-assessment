@@ -1,5 +1,5 @@
 <?php
-// class.php
+
 
 class AdminPage
 {
@@ -52,7 +52,7 @@ class AdminPage
                 $order_date = $row['order_date'];
                 $status = $row['status'];
 
-                // Fetch user details and product details based on user_id and product_id
+               
                 $user_sql = "SELECT username FROM users WHERE id = $user_id";
                 $user_result = $this->conn->query($user_sql);
                 $user_row = $user_result->fetch_assoc();
@@ -61,7 +61,7 @@ class AdminPage
                 $product_result = $this->conn->query($product_sql);
                 $product_row = $product_result->fetch_assoc();
 
-                // Add the order details to the $admin_orders array
+               
                 $admin_orders[] = array(
                     'order_id' => $order_id,
                     'username' => $user_row['username'],

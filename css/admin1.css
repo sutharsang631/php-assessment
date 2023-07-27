@@ -1,4 +1,4 @@
-/* admin.css */
+
 
 body {
     font-family: Arial, sans-serif;
@@ -63,16 +63,6 @@ form button:hover {
     border-color: #cc5151;
 }
 
-/* .pagination>.current-page :active{
-    display: inline-block;
-    padding: 5px 10px;
-    text-decoration: none;
-    color: #832727;
-    border: 1px solid #007bff;
-    background-color: #0056b3;
-    margin: 0 5px;
-    border-radius: 3px;
-} */
 
 .pagination>.current-page
 {

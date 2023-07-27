@@ -1,6 +1,6 @@
 <?php
-// addproduct.php
 
+include 'connect.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -12,27 +12,14 @@ if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
     exit();
 }
 
-// Database connection
-$host = "localhost";
-$username = "root";
-$password = "Seetha@123";
-$database = "king";
 
-$conn = new mysqli($host, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Add new product
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_product'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $category = $_POST['category'];
     $price = $_POST['price'];
 
-    // Upload the image file
+
     $image_url = '';
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $image_url = $_FILES['image']['name'];
@@ -40,10 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_product'])) {
         move_uploaded_file($_FILES['image']['tmp_name'], $upload_directory . $image_url);
     }
 
-    // Prepare and execute the SQL query to insert the new product into the database
     $sql = "INSERT INTO products (name, description, category, price, image_url) VALUES ('$name', '$description', '$category', $price, '$image_url')";
     if ($conn->query($sql) === TRUE) {
-        // Product added successfully, redirect back to admin page
+
         header("Location: admin.php");
         exit();
     } else {
@@ -56,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_product'])) {
 <html>
 <head>
     <title>Add Product</title>
-    <link rel="stylesheet" href="add.css">
+    <link rel="stylesheet" href="css/add.css">
 </head>
 <body>
 

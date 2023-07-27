@@ -1,32 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// Database connection
-$host = "localhost";
-$username = "root";
-$password = "Seetha@123";
-$database = "king";
-
-$conn = new mysqli($host, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'connect.php';
 
 $user_id = $_SESSION['user_id'];
 
-// Pagination
 $items_per_page = 6;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $start_from = ($page - 1) * $items_per_page;
 
-// Fetch user's orders and their status with pagination
 $sql = "SELECT o.id, p.name as product_name, o.quantity, p.price, (o.quantity * p.price) as total, o.order_date, o.status, p.image_url
         FROM orders o
         JOIN products p ON o.product_id = p.id
@@ -40,7 +22,7 @@ $result = $conn->query($sql);
 <html>
 <head>
     <title>Order History</title>
-    <link rel="stylesheet" href="hist.css"> 
+    <link rel="stylesheet" href="css/hist.css"> 
 </head>
 <body>
     <h1>Order History</h1>
@@ -73,7 +55,6 @@ $result = $conn->query($sql);
         }
         echo '</table>';
 
-        // Pagination Links
         $count_sql = "SELECT COUNT(id) AS total_orders FROM orders WHERE user_id = $user_id";
         $count_result = $conn->query($count_sql);
         $row = $count_result->fetch_assoc();

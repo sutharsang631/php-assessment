@@ -1,11 +1,10 @@
 <?php
-// admin.php
 
 require_once 'Admin_class.php';
 
 $host = "localhost";
 $username = "root";
-$password = "Seetha@123";
+$password = "**rock**";
 $database = "king";
 
 $adminPage = new AdminPage($host, $username, $password, $database);
@@ -20,9 +19,7 @@ $total_pages = $admin_orders_info['total_pages'];
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delivered']) && isset($_POST['order_id'])) {
     $order_id = $_POST['order_id'];
 
-    // Update the status of the order to "Delivered" in the database
     if ($adminPage->updateOrderStatus($order_id)) {
-        // Successfully updated the status, reload the page
         header("Location: admin.php?page=$page");
         exit();
     } else {
@@ -35,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delivered']) && isset
 <html>
 <head>
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="admin1.css">
+    <link rel="stylesheet" href="css/admin1.css">
 </head>
 <body>
 
@@ -77,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delivered']) && isset
     ?>
 </table>
 
-<!-- Pagination Links -->
 <div class="pagination">
   <?php if ($page > 1): ?>
     <a href="admin.php?page=<?php echo $page - 1; ?>">Prev</a>

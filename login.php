@@ -1,5 +1,5 @@
 <?php
-// login.php
+
 
 session_start();
 
@@ -10,11 +10,10 @@ if (isset($_SESSION['user_id'])) {
 include 'connect.php';
 function is_valid_password($password)
 {
-    // Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one digit.
+   
     return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/', $password);
 }
 
-// User login
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -38,12 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
     }
 }
 
-//this is for  New user sign-up
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // to Check if the password meets complexity requirements
     if (!is_valid_password($password)) {
         $error_message = "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one digit. Example: Example@123";
     } else {
@@ -62,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
 <head>
     <title>Login</title>
 </head>
-<link rel="stylesheet" href="login.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/style.css">
 <body>
     <h1>Login</h1>
    
