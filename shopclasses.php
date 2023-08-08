@@ -4,7 +4,7 @@ class DatabaseConnect
 {
     private $host = "localhost";
     private $username = "root";
-    private $password = "**rock**";
+    private $password = "Seetha@123";
     private $database = "king";
     protected $conn;
 

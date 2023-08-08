@@ -8,9 +8,7 @@ if (isset($_GET['logout'])) {
     header("Location: login.php");
     exit();
 }
-if (isset($_SERVER['HTTP_REFERER'])) {
-    $_SESSION['previous_page'] = $_SERVER['HTTP_REFERER'];
-}
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['update_cart'])) {

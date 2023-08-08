@@ -4,7 +4,7 @@ require_once 'Admin_class.php';
 
 $host = "localhost";
 $username = "root";
-$password = "**rock**";
+$password = "Seetha@123";
 $database = "king";
 
 $adminPage = new AdminPage($host, $username, $password, $database);

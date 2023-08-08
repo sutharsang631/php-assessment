@@ -1,22 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-$host = "localhost";
-$username = "root";
-$password = "**rock**";
-$database = "king";
 
-$conn = new mysqli($host, $username, $password, $database);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-
+include 'connect.php';
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
     $back_to_shop = isset($_GET['back_to_shop']) ? $_GET['back_to_shop'] : 'shop.php';

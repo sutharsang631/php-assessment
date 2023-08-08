@@ -32,6 +32,7 @@ $filterData = $shop->applyFilters($page, $category_filter, $search_query, $min_p
 $total_pages = $filterData['total_pages'];
 $total_products = $filterData['total_products'];
 $result = $filterData['result'];
+// print_r($result);
 $categories = $filterData['categories'];
 
 
@@ -54,24 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['product_id'])) {
 }
 
 
-if (isset($_GET['product_id'])) {
-    $product_id = $_GET['product_id'];
-    $back_to_shop = isset($_GET['back_to_shop']) ? $_GET['back_to_shop'] : 'shop.php';
 
-    $_SESSION['previous_page'] = $back_to_shop;
-
-
-    $sql = "SELECT * FROM products WHERE id = $product_id";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 1) {
-        $product = $result->fetch_assoc();
-    } else {
-
-        header("Location: shop.php");
-        exit();
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -189,3 +173,7 @@ if (isset($_GET['product_id'])) {
 </div>
 </body>
 </html>
+
+
+
+

@@ -82,7 +82,7 @@ $result = $conn->query($sql);
     }
     ?>
     <div class="back-container">
-        <a href="shop.php">Back to Cart</a>
+        <a href="shop.php">Back to shop</a>
     </div>
     <div class="logout-container">
         <a href="shop.php?logout=true">Logout</a>
