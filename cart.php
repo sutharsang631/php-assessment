@@ -17,9 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         foreach ($_POST['quantity'] as $product_id => $quantity) {
             if ($quantity == 0) {
                 unset($cart[$product_id]);
-            } else {
-                $cart[$product_id]['quantity'] = $quantity;
-            }
+                continue;
+            } 
+            $cart[$product_id]['quantity'] = $quantity;
+            
         }
 
         $_SESSION['cart'] = $cart;

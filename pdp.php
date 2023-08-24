@@ -2,9 +2,11 @@
 session_start();
 
 include 'connect.php';
+
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
     $back_to_shop = isset($_GET['back_to_shop']) ? $_GET['back_to_shop'] : 'shop.php';
+    $back_to_shop = $_GET['back_to_shop']?? 'shop.php';
 
 
     $sql = "SELECT * FROM products WHERE id = $product_id";
@@ -57,13 +59,15 @@ if (isset($_GET['product_id'])) {
     exit();
 }
 
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Product Details</title>
-    <link rel="stylesheet" href="css/pdp1.css"> 
+    <link rel="stylesheet" href="css/pdp3.css"> 
     
 </head>
 <body>
@@ -82,12 +86,13 @@ if (isset($_GET['product_id'])) {
 
         <button type="submit" name="add_to_cart">Update Cart</button>
     </form>
-    <a href="<?php echo $back_to_shop; ?>">Back to Shop</a>
+    <a href="<?php echo $back_to_shop; ?>" style="{color: white}">Back to Shop</a>
 </div>
 
+<?php
+?>
 
-
-    <div id="mini-cart">
+    <!-- <div id="mini-cart">
         <h2>Mini Cart</h2>
         <table>
             <tr>
@@ -111,7 +116,11 @@ if (isset($_GET['product_id'])) {
         <div id="anchor">
         <a href="cart.php">View Full Cart</a>   
         
-        </div>
+        </div> -->
+
+        <?php
+        include 'mini.html';
+        ?>
         
     </div>
 </body>
