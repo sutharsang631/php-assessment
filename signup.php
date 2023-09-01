@@ -8,7 +8,6 @@ if (isset($_SESSION['user_id'])) {
 
 include 'connect.php';
 
-
 function is_valid_password($password)
 {
     return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/', $password);
@@ -18,19 +17,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['signup'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if (!is_valid_password($password)) {
-        $error_message = "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one digit. Example: Example@123";
-    } else {
-        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-        if ($conn->query($sql) === TRUE) {
-            $success_message = "User registration successful. Please log in.";
+    try {
+        if (!is_valid_password($password)) {
+            $error_message = "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, and one digit. Example: Example@123";
         } else {
-            $error_message = "Error: " . $conn->error;
+            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ss", $username, $password);
+
+            if ($stmt->execute()) {
+                $success_message = "User registration successful. Please log in.";
+            } else {
+                $error_message = "Error: " . $stmt->error;
+            }
+
+            $stmt->close();
         }
+    } catch (Exception $e) {
+        $error_message = "An error occurred while processing your request.";
+        // You might want to log the error for further investigation
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>

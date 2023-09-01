@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_product'])) {
         $upload_directory = 'images/';
         move_uploaded_file($_FILES['image']['tmp_name'], $upload_directory . $image_url);
     }
+    try{
 
     $sql = "INSERT INTO products (name, description, category, price, image_url) VALUES ('$name', '$description', '$category', $price, '$image_url')";
     if ($conn->query($sql) === TRUE) {
@@ -35,6 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['add_product'])) {
     } else {
         $error_message = "Error adding product: " . $conn->error;
     }
+
+}
+catch (Exception $e) {
+    $error_message = "An error occurred while adding the product.";
+}
 }
 ?>
 

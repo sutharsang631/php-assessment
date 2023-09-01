@@ -12,22 +12,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT id, is_admin FROM users WHERE username = '$username' AND password = '$password'";
-    $result = $conn->query($sql);
+    try {
+        $sql = "SELECT id, is_admin FROM users WHERE username = '$username' AND password = '$password'";
+        $result = $conn->query($sql);
 
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        $_SESSION['user_id'] = $row['id'];
-        if ($username === 'admin' && $password === 'admin@123') {
-            $_SESSION['is_admin'] = true;
-            header("Location: admin.php");
-            exit();
+        if ($result && $result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $_SESSION['user_id'] = $row['id'];
+            if ($username === 'admin' && $password === 'admin@123') {
+                $_SESSION['is_admin'] = true;
+                header("Location: admin.php");
+                exit();
+            } else {
+                header("Location: shop.php");
+                exit();
+            }
         } else {
-            header("Location: shop.php");
-            exit();
+            $error_message = "Invalid username or password";
         }
-    } else {
-        $error_message = "Invalid username or password";
+    } catch (Exception $e) {
+        $error_message = "An error occurred while processing your request.";
     }
 }
 ?>
@@ -35,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>shopping Cart</title>
+    <title>Shopping Cart</title>
 </head>
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/style.css">
 <body>
-    <h1>shopping Cart</h1>
+    <h1>Shopping Cart</h1>
    
-     <div class="centerbt">
+    <div class="centerbt">
         <button onclick="toggleForm('loginForm')">Login</button>
         <button onclick="redirectToSignup()">Sign Up</button>
     </div>
@@ -54,16 +58,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['login'])) {
     <div id="loginForm">
         <h3>Login</h3>
         <form action="login.php" method="POST">
-        <label>Username:</label>
-        <input type="text" name="username" required><br>
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-        <input type="submit" name="login" value="Login">
-    </form>
+            <label>Username:</label>
+            <input type="text" name="username" required><br>
+            <label>Password:</label>
+            <input type="password" name="password" required><br>
+            <input type="submit" name="login" value="Login">
+        </form>
     </div>
     <script>
         function toggleForm(formId) {
             var loginForm = document.getElementById('loginForm');
+            var signupForm = document.getElementById('signupForm');
 
             if (formId === 'loginForm') {
                 loginForm.style.display = 'block';

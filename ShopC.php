@@ -10,16 +10,21 @@ class DatabaseConnect
 
     public function __construct()
     {
-
+        try {
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
 
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
+    } catch (Exception $e) {
+        // Handle the database connection exception here
+        echo "An error occurred while connecting to the database.";
+        // You might want to log the error for further investigation
+    }
     }
 }
 
-class Shop extends DatabaseConnect
+class ShopC extends DatabaseConnect
 {
     private $items_per_page = 4;
 
@@ -30,6 +35,7 @@ class Shop extends DatabaseConnect
         $min_price = '',
         $max_price = ''
     ) {
+        try {
         $start_from = ($page - 1) * $this->items_per_page;
 
         if ($category_filter !== '') {
@@ -55,7 +61,7 @@ class Shop extends DatabaseConnect
 
                 $sql = "SELECT * FROM products";
 
-                $sql_filters = array();
+                $sql_filters = [];
 
                 if ($category_filter !== '') {
                     $sql_filters[] = "category = '$category_filter'";
@@ -91,7 +97,7 @@ class Shop extends DatabaseConnect
 
         $sql_categories = "SELECT DISTINCT category FROM products";
         $result_categories = $this->conn->query($sql_categories);
-        $categories = array();
+        $categories = [];
 
         if ($result_categories->num_rows > 0) {
             while ($row = $result_categories->fetch_assoc()) {
@@ -105,10 +111,16 @@ class Shop extends DatabaseConnect
             'result' => $result,
             'categories' => $categories
         );
+    } catch (Exception $e) {
+        // Handle any exceptions that might occur in this method
+        echo "An error occurred while applying filters.";
+        // You might want to log the error for further investigation
+    }
     }
 
     public function addToCart($product_id)
     {
+        try {
 
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['product_id'])) {
             $product_id = $_POST['product_id'];
@@ -126,9 +138,16 @@ class Shop extends DatabaseConnect
                         'price' => $row_product['price'],
                         'quantity' => 1
                     );
+                    
                 }
             }
         }
     }
+    catch (Exception $e) {
+        // Handle any exceptions that might occur in this method
+        echo "An error occurred while adding to cart.";
+        // You might want to log the error for further investigation
+    }
+}
 }
 ?>

@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once "shopclasses.php";
+require_once "ShopC.php";
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-$shop = new Shop();
+$shop = new ShopC();
 
 
 if (isset($_GET['logout'])) {
@@ -96,23 +96,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['product_id'])) {
 </div>
 
 <div id="products-container">
-    <?php
-    while ($row = $result->fetch_assoc()) {
-        echo '<div class="product-item">';
-        echo '<img src="upload/' . $row['image_url'] . '" alt="' . $row['name'] . '">';
-        echo '<h2>' . $row['name'] . '</h2>';
-        echo '<p>' . $row['description'] . '</p>';
-        echo '<p>Price: $' . $row['price'] . '</p>';
-        echo '<div class="product-item-button"> <a href="pdp.php?product_id=' . $row['id'] . '&back_to_shop=' . urlencode($_SERVER['REQUEST_URI']) . '">View Details</a></div>';
-        ?>
-        <form action="shop.php?page=<?php echo urlencode($page); ?>&category=<?php echo urlencode($category_filter); ?>&search=<?php echo urlencode($search_query); ?>&min_price=<?php echo urlencode($min_price); ?>&max_price=<?php echo urlencode($max_price); ?>&apply_filter=1" method="POST">
-            <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
-            <button type="submit">Add to Cart</button>
-        </form>
-        <?php
-        echo '</div>';
-    }
-    ?>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div class="product-item">
+            <img src="upload/<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>">
+            <h2><?php echo $row['name']; ?></h2>
+            <p><?php echo $row['description']; ?></p>
+            <p>Price: $<?php echo $row['price']; ?></p>
+            <div class="product-item-button">
+                <a href="pdp.php?product_id=<?php echo $row['id']; ?>&back_to_shop=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>">View Details</a>
+            </div>
+            <form action="shop.php?page=<?php echo urlencode($page); ?>&category=<?php echo urlencode($category_filter); ?>&search=<?php echo urlencode($search_query); ?>&min_price=<?php echo urlencode($min_price); ?>&max_price=<?php echo urlencode($max_price); ?>&apply_filter=1" method="POST">
+                <input type="hidden" name="product_id" value="<?php echo $row['id']; ?>">
+                <button type="submit">Add to Cart</button>
+            </form>
+        </div>
+    <?php endwhile; ?>
 </div>
 
 <div class="pagination">
@@ -148,29 +146,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['product_id'])) {
     <a  href="shop.php?logout=1">Logout</a>
 </div>
 <?php echo "<br>"." $total_products " ."  products found"?>
-<div id="mini-cart">
-<h2>Mini Cart</h2>
-<table>
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-    </tr>
-    <?php
-    if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as $product_id => $item) {
-            echo '<tr>';
-            echo '<td>' . $item['name'] . '</td>';
-            echo '<td>' . $item['quantity'] . '</td>';
-            echo '</tr>';
-        }
-    } else {
-        echo '<tr><td colspan="3">Your cart is empty</td></tr>';
-    }
 
-    ?>
-</table>
-<p><a href="cart.php">View Full Cart</a></p>
-</div>
+<?php
+        include 'mini.html';
+        ?>
+        
 </body>
 </html>
 
