@@ -1,0 +1,25 @@
+<div id="mini-cart">
+    <h2>Mini Cart</h2>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+        </tr>
+        <?php
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $product_id => $item) {
+                echo '<tr>';
+                echo '<td>' . $item['name'] . '</td>';
+                echo '<td>' . $item['quantity'] . '</td>';
+                echo '</tr>';
+            }
+        } else {
+            echo '<tr><td colspan="2">Your cart is empty</td></tr>';
+        }
+
+        ?>
+    </table>
+    <div id="anchor">
+    <a href="cart.php">View Full Cart</a>   
+    
+    </div>

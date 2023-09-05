@@ -1,7 +1,6 @@
 <?php
-// admin.php
 
-require_once 'Admin_class.php';
+require_once 'AdminPage.php';
 
 $host = "localhost";
 $username = "root";
@@ -20,9 +19,7 @@ $total_pages = $admin_orders_info['total_pages'];
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delivered']) && isset($_POST['order_id'])) {
     $order_id = $_POST['order_id'];
 
-    // Update the status of the order to "Delivered" in the database
     if ($adminPage->updateOrderStatus($order_id)) {
-        // Successfully updated the status, reload the page
         header("Location: admin.php?page=$page");
         exit();
     } else {
@@ -35,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delivered']) && isset
 <html>
 <head>
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="admin1.css">
+    <link rel="stylesheet" href="css/admin1.css">
 </head>
 <body>
 
@@ -53,46 +50,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['delivered']) && isset
         <th>Status</th>
         <th>Action</th>
     </tr>
-    <?php
-    foreach ($admin_orders as $order) {
-        echo '<tr>';
-        echo '<td>' . $order['order_id'] . '</td>';
-        echo '<td>' . $order['username'] . '</td>';
-        echo '<td>' . $order['product_name'] . '</td>';
-        echo '<td>' . $order['quantity'] . '</td>';
-        echo '<td>$' . $order['price'] . '</td>';
-        echo '<td>$' . number_format($order['total'], 2) . '</td>';
-        echo '<td>' . $order['order_date'] . '</td>';
-        echo '<td>' . ($order['status'] === 'delivered' ? 'Delivered' : 'Processing') . '</td>';
-        echo '<td>';
-        if ($order['status'] !== 'delivered') {
-            echo '<form action="' . $_SERVER['REQUEST_URI'] . '" method="POST">';
-            echo '<input type="hidden" name="order_id" value="' . $order['order_id'] . '">';
-            echo '<button type="submit" name="delivered">Delivered</button>';
-            echo '</form>';
-        }
-        echo '</td>';
-        echo '</tr>';
-    }
-    ?>
+    <?php foreach ($admin_orders as $order): ?>
+      <tr>
+      <td><?= $order['order_id']; ?></td>
+      <td><?= $order['username']; ?></td>
+      <td><?= $order['product_name']; ?></td>
+      <td><?= $order['quantity']; ?></td>
+      <td>$<?= $order['price']; ?></td>
+      <td>$<?= number_format($order['total'], 2); ?></td>
+      <td><?= $order['order_date']; ?></td>
+      <td><?= ($order['status'] === 'delivered') ? 'Delivered' : 'Processing'; ?></td>
+      <td>
+          <?php if ($order['status'] !== 'delivered'): ?>
+              <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="POST">
+                  <input type="hidden" name="order_id" value="<?= $order['order_id']; ?>">
+                  <button type="submit" name="delivered">Delivered</button>
+              </form>
+          <?php endif; ?>
+      </td>
+  </tr>
+
+    <?php endforeach; ?>
 </table>
 
-<!-- Pagination Links -->
 <div class="pagination">
   <?php if ($page > 1): ?>
-    <a href="admin.php?page=<?php echo $page - 1; ?>">Prev</a>
+    <a href="admin.php?page=<?= $page - 1; ?>">Prev</a>
   <?php endif; ?>
 
   <?php for ($i = 1; $i <= $total_pages; $i++): ?>
     <?php if ($page === $i): ?>
-      <span class="current-page"><?php echo $i; ?></span>
+      <span class="current-page"><?= $i; ?></span>
     <?php else: ?>
-      <a href="admin.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+      <a href="admin.php?page=<?= $i; ?>"><?= $i; ?></a>
     <?php endif; ?>
   <?php endfor; ?>
 
   <?php if ($page < $total_pages): ?>
-    <a href="admin.php?page=<?php echo $page + 1; ?>">Next</a>
+    <a href="admin.php?page=<?= $page + 1; ?>">Next</a>
   <?php endif; ?>
 </div>
 

@@ -1,0 +1,16 @@
+
+1. Use try catch method for every db operations. That will help to handle the db exceptions
+2.Try to avoid the else conditions 
+3.Use foreach instead for loop 
+4.Simplify the Conditional (ternary) operator syntax for array handling for every pages
+
+     isset($_GET['page']) ? intval($_GET['page']) : 1;
+5.shopclasses. php linke 58,94. Avoid deprecated array() (follow the changes for all php files)
+6.use common minicart code and add it to pdp and plp
+nameing conversion 
+
+
+7 don't add html code inside the <?php ?> tab
+8.add php logic in separate php class file
+9. Class name and file name should be same
+10. 

@@ -1,4 +1,4 @@
-/* Basic styling for the product details container */
+
 .product-details {
     max-width: 600px;
     margin: 0 auto;
@@ -61,7 +61,7 @@
     background-color: #007bff;
 }
 
-/* Styling for the mini cart section */
+
 #mini-cart {
     margin-top: 40px;
     border: 1px solid #ddd;
@@ -105,7 +105,7 @@
 #mini-cart a {
     display: inline-block;
     text-decoration: none;
-    color: #007bff;
+    color: #ffffff;
 }
 
 

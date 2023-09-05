@@ -1,54 +1,22 @@
-/* style.css */
 
-/* Body styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 20px;
 }
 
-/* Header styles */
+
 h1 {
   margin: 0;
   padding: 10px 0;
 }
 
-/* Navigation styles */
-/* div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-} */
 
 a {
   color: #000;
   text-decoration: none;
   padding: 10px;
 }
-
-/* Product styles */
-/* div > div {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 20px;
-  max-width: 300px;
-} */
-/* 
-div > div img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-} */
-
-/* div > div h2 {
-  margin-top: 10px;
-}
-
-div > div p {
-  margin-top: 5px;
-} */
 
 .cov{
   height: 25rem;
@@ -72,16 +40,7 @@ form button:hover {
   background-color: #2d81db;
 }
 
-/* Pagination styles */
-/* div > div:last-child {
-  text-align: center;
-}
 
-div > div:last-child a {
-  margin: 0 5px;
-} */
-
-/* Cart styles */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -107,7 +66,6 @@ form input[type="number"] {
   text-align: center;
 }
 
-/* Login and Sign Up styles */
 form {
   max-width: 300px;
   margin: 0 auto;
@@ -149,7 +107,6 @@ p {
   padding: 5px 0;
 }
 
-/* Admin Panel styles */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -170,7 +127,7 @@ tr:hover {
   background-color: #f2f2f2;
 }
 
-/* General styles */
+
 p {
   margin: 0;
   padding: 5px 0;
@@ -217,7 +174,6 @@ p {
 }
 
 
-/* Logout styles */
 #logout-container {
   margin-top: 20px;
   align-items: center;
@@ -239,7 +195,6 @@ p {
   background-color: #0056b3;
 }
 
-  /* Logout styles */
   .logout-container {
     margin-top: 20px;
     margin-left: 3rem;

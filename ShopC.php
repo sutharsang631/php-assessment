@@ -2,7 +2,6 @@
 <?php
 class DatabaseConnect
 {
-    // Database connection properties
     private $host = "localhost";
     private $username = "root";
     private $password = "Seetha@123";
@@ -11,17 +10,21 @@ class DatabaseConnect
 
     public function __construct()
     {
-        // Create connection
+        try {
         $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database);
 
-        // Check connection
         if ($this->conn->connect_error) {
             die("Connection failed: " . $this->conn->connect_error);
         }
+    } catch (Exception $e) {
+        // Handle the database connection exception here
+        echo "An error occurred while connecting to the database.";
+        // You might want to log the error for further investigation
+    }
     }
 }
 
-class Shop extends DatabaseConnect
+class ShopC extends DatabaseConnect
 {
     private $items_per_page = 4;
 
@@ -32,19 +35,17 @@ class Shop extends DatabaseConnect
         $min_price = '',
         $max_price = ''
     ) {
+        try {
         $start_from = ($page - 1) * $this->items_per_page;
 
-        // product category filter
         if ($category_filter !== '') {
             $category_filter = $this->conn->real_escape_string($category_filter);
         }
 
-        // search query
         if ($search_query !== '') {
             $search_query = $this->conn->real_escape_string($search_query);
         }
 
-        // price filter
         if ($min_price !== '') {
             $min_price = $this->conn->real_escape_string($min_price);
         }
@@ -52,16 +53,15 @@ class Shop extends DatabaseConnect
             $max_price = $this->conn->real_escape_string($max_price);
         }
 
-        // Form submitted to apply filters
         if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['apply_filter'])) {
-            //here only we  Apply both category and price filters when both are set
+ 
             if ($category_filter !== '' && $min_price !== '' && $max_price !== '') {
                 $sql = "SELECT * FROM products WHERE category = '$category_filter' AND price BETWEEN $min_price AND $max_price";
             } else {
-                // Apply category and/or search filters
+
                 $sql = "SELECT * FROM products";
 
-                $sql_filters = array();
+                $sql_filters = [];
 
                 if ($category_filter !== '') {
                     $sql_filters[] = "category = '$category_filter'";
@@ -76,17 +76,15 @@ class Shop extends DatabaseConnect
                 }
             }
         } else {
-            // Fetch all products without filters this is default
+
             $sql = "SELECT * FROM products";
         }
 
-        // Add price filter to the query when category is not set
         if ($category_filter === '' && $min_price !== '' && $max_price !== '') {
             $sql .= ($search_query === '') ? " WHERE " : " AND ";
             $sql .= "price BETWEEN $min_price AND $max_price";
         }
 
-        // Add pagination to the query
         $sql_count = "SELECT COUNT(id) AS total FROM ($sql) AS total_products";
         $result_count = $this->conn->query($sql_count);
         $row_count = $result_count->fetch_assoc();
@@ -97,10 +95,9 @@ class Shop extends DatabaseConnect
 
         $result = $this->conn->query($sql);
 
-        // Fetch product categories for filter dropdown
         $sql_categories = "SELECT DISTINCT category FROM products";
         $result_categories = $this->conn->query($sql_categories);
-        $categories = array();
+        $categories = [];
 
         if ($result_categories->num_rows > 0) {
             while ($row = $result_categories->fetch_assoc()) {
@@ -114,15 +111,20 @@ class Shop extends DatabaseConnect
             'result' => $result,
             'categories' => $categories
         );
+    } catch (Exception $e) {
+        // Handle any exceptions that might occur in this method
+        echo "An error occurred while applying filters.";
+        // You might want to log the error for further investigation
+    }
     }
 
     public function addToCart($product_id)
     {
-        // Add product to cart
+        try {
+
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['product_id'])) {
             $product_id = $_POST['product_id'];
 
-            // If the product is already in the cart, increase the quantity, otherwise add it to the cart
             if (isset($_SESSION['cart'][$product_id])) {
                 $_SESSION['cart'][$product_id]['quantity']++;
             } else {
@@ -136,9 +138,16 @@ class Shop extends DatabaseConnect
                         'price' => $row_product['price'],
                         'quantity' => 1
                     );
+                    
                 }
             }
         }
     }
+    catch (Exception $e) {
+        // Handle any exceptions that might occur in this method
+        echo "An error occurred while adding to cart.";
+        // You might want to log the error for further investigation
+    }
+}
 }
 ?>
